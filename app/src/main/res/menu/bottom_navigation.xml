@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/ic_baseline_home"
+        android:title="Home"
+        app:cnb_iconColor="@color/black"/>
+    <item
+        android:id="@+id/schedule"
+        android:icon="@drawable/ic_baseline_event_note"
+        android:title="Schedule"
+        app:cnb_iconColor="@color/black"/>
+    <item
+        android:id="@+id/notes"
+        android:icon="@drawable/ic_baseline_list_alt"
+        android:title="Notes"
+        app:cnb_iconColor="@color/black" />
+    <item
+        android:id="@+id/selected"
+        android:icon="@drawable/ic_baseline_star_border"
+        android:title="Selected"
+        app:cnb_iconColor="@color/black" />
+</menu>
+
