@@ -3,22 +3,22 @@
     <item
         android:id="@+id/home"
         android:icon="@drawable/ic_baseline_home"
-        android:title="Home"
+        android:title="@string/home"
         app:cnb_iconColor="@color/black"/>
     <item
         android:id="@+id/schedule"
         android:icon="@drawable/ic_baseline_event_note"
-        android:title="Schedule"
+        android:title="@string/schedule"
         app:cnb_iconColor="@color/black"/>
     <item
         android:id="@+id/notes"
         android:icon="@drawable/ic_baseline_list_alt"
-        android:title="Notes"
+        android:title="@string/notes"
         app:cnb_iconColor="@color/black" />
     <item
         android:id="@+id/selected"
         android:icon="@drawable/ic_baseline_star_border"
-        android:title="Selected"
+        android:title="@string/selected"
         app:cnb_iconColor="@color/black" />
 </menu>
 
