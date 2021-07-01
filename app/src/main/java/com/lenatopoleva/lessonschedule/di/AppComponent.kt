@@ -7,6 +7,7 @@ import com.lenatopoleva.lessonschedule.di.modules.NavigationModule
 import com.lenatopoleva.lessonschedule.mvp.presenter.HomePresenter
 import com.lenatopoleva.lessonschedule.mvp.presenter.MainPresenter
 import com.lenatopoleva.lessonschedule.ui.activity.MainActivity
+import com.lenatopoleva.lessonschedule.ui.adapter.HomeworkListRvAdapter
 import com.lenatopoleva.lessonschedule.ui.adapter.LessonsRvAdapter
 import com.lenatopoleva.lessonschedule.ui.fragment.HomeFragment
 import dagger.Component
@@ -27,4 +28,5 @@ interface AppComponent {
     fun inject(mainPresenter: MainPresenter)
     fun inject(homePresenter: HomePresenter)
     fun inject(lessonsRvAdapter: LessonsRvAdapter)
+    fun inject(homeworkListRvAdapter: HomeworkListRvAdapter)
 }

@@ -7,5 +7,6 @@ import moxy.viewstate.strategy.alias.AddToEndSingle
 interface HomeView: MvpView {
     fun updateLessonsList()
     fun init()
+    fun updateHomeworkList()
 
 }

@@ -10,6 +10,7 @@ import com.lenatopoleva.lessonschedule.mvp.presenter.HomePresenter
 import com.lenatopoleva.lessonschedule.mvp.view.HomeView
 import com.lenatopoleva.lessonschedule.ui.App
 import com.lenatopoleva.lessonschedule.ui.BackButtonListener
+import com.lenatopoleva.lessonschedule.ui.adapter.HomeworkListRvAdapter
 import com.lenatopoleva.lessonschedule.ui.adapter.LessonsRvAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
 import moxy.MvpAppCompatFragment
@@ -32,9 +33,9 @@ class HomeFragment: MvpAppCompatFragment(), HomeView, BackButtonListener {
         LessonsRvAdapter(presenter.lessonsListPresenter).apply { App.instance.appComponent.inject(this)}
     }
 
-//    val homeworksAdapter by lazy {
-//        HomeworksRvAdapter(presenter.homeworksListPresenter)
-//    }
+    val homeworkListAdapter by lazy {
+        HomeworkListRvAdapter(presenter.homeworkListPresenter).apply { App.instance.appComponent.inject(this)}
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
         View.inflate(context, R.layout.fragment_home, null)
@@ -43,14 +44,19 @@ class HomeFragment: MvpAppCompatFragment(), HomeView, BackButtonListener {
         rv_lessons.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         rv_lessons.adapter = lessonsAdapter
 
-//        rv_homework.layoutManager = LinearLayoutManager(requireContext())
-//        rv_homework.adapter = homeworkAdapter
+        rv_homework.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        rv_homework.adapter = homeworkListAdapter
     }
 
-    override fun backPressed() = presenter.backClick()
+    override fun updateHomeworkList() {
+        homeworkListAdapter.notifyDataSetChanged()
+    }
 
     override fun updateLessonsList() {
         lessonsAdapter.notifyDataSetChanged()
     }
+
+    override fun backPressed() = presenter.backClick()
+
 
 }

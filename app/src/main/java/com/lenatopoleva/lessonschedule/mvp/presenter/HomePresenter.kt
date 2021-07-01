@@ -1,9 +1,12 @@
 package com.lenatopoleva.lessonschedule.mvp.presenter
 
+import com.lenatopoleva.lessonschedule.mvp.model.entity.Homework
 import com.lenatopoleva.lessonschedule.mvp.model.entity.Lesson
 import com.lenatopoleva.lessonschedule.mvp.model.repository.IHomeScreenRepository
+import com.lenatopoleva.lessonschedule.mvp.presenter.list.IHomeworkListPresenter
 import com.lenatopoleva.lessonschedule.mvp.presenter.list.ILessonsListPresenter
 import com.lenatopoleva.lessonschedule.mvp.view.HomeView
+import com.lenatopoleva.lessonschedule.mvp.view.list.HomeworkItemView
 import com.lenatopoleva.lessonschedule.mvp.view.list.LessonItemView
 import com.lenatopoleva.lessonschedule.ui.App
 import io.reactivex.rxjava3.core.Scheduler
@@ -36,16 +39,36 @@ class HomePresenter: MvpPresenter<HomeView>() {
         override fun getCount() = lessons.size
     }
 
+    class HomeworkListPresenter : IHomeworkListPresenter {
+        override var itemClickListener: ((HomeworkItemView) -> Unit)? = null
+
+        val homeworkList = mutableListOf<Homework>()
+
+        override fun bindView(view: HomeworkItemView) {
+            val homework = homeworkList[view.pos]
+            view.setLesson(homework.lesson)
+            view.setDeadline(homework.deadline)
+            homework.image?.let { view.loadImage(homework.image) }
+            view.setDescription(homework.description)
+        }
+        override fun getCount() = homeworkList.size
+    }
+
     val lessonsListPresenter = LessonsListPresenter()
+    val homeworkListPresenter = HomeworkListPresenter()
     var disposables = CompositeDisposable()
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         viewState.init()
         loadLessons()
+        loadHomeworkList()
 
         lessonsListPresenter.itemClickListener = { view ->
             println("Lesson: ${lessonsListPresenter.lessons[view.pos].title} clicked")
+        }
+        homeworkListPresenter.itemClickListener = { view ->
+            println("Lesson: ${homeworkListPresenter.homeworkList[view.pos].lesson} clicked")
         }
     }
 
@@ -58,6 +81,19 @@ class HomePresenter: MvpPresenter<HomeView>() {
                     lessonsListPresenter.lessons.clear()
                     lessonsListPresenter.lessons.addAll(it)
                     viewState.updateLessonsList()
+                },
+                { println("onError: ${it.message}") }))
+    }
+
+    fun loadHomeworkList() {
+        disposables.add(homeRepository.getHomeworkList()
+            .retry(3)
+            .observeOn(uiScheduler)
+            .subscribe(
+                {
+                    homeworkListPresenter.homeworkList.clear()
+                    homeworkListPresenter.homeworkList.addAll(it)
+                    viewState.updateHomeworkList()
                 },
                 { println("onError: ${it.message}") }))
     }
