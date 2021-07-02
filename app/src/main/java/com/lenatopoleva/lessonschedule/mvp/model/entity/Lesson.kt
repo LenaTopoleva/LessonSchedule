@@ -8,5 +8,7 @@ data class Lesson (
     val title: String,
     val timeStart: String,
     val timeEnd: String,
-    val image: String?
+    val image: String?,
+    val isOptional: Boolean,
+    val isOnline: Boolean
 ): Parcelable

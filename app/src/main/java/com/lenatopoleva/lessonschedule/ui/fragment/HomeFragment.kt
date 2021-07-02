@@ -1,9 +1,11 @@
 package com.lenatopoleva.lessonschedule.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lenatopoleva.lessonschedule.R
 import com.lenatopoleva.lessonschedule.mvp.presenter.HomePresenter
@@ -15,6 +17,7 @@ import com.lenatopoleva.lessonschedule.ui.adapter.LessonsRvAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
 import moxy.MvpAppCompatFragment
 import moxy.presenter.InjectPresenter
+
 
 class HomeFragment: MvpAppCompatFragment(), HomeView, BackButtonListener {
 
@@ -30,26 +33,52 @@ class HomeFragment: MvpAppCompatFragment(), HomeView, BackButtonListener {
     lateinit var presenter: HomePresenter
 
     val lessonsAdapter by lazy {
-        LessonsRvAdapter(presenter.lessonsListPresenter).apply { App.instance.appComponent.inject(this)}
+        LessonsRvAdapter(presenter.lessonsListPresenter).apply { App.instance.appComponent.inject(
+            this
+        )}
     }
 
     val homeworkListAdapter by lazy {
-        HomeworkListRvAdapter(presenter.homeworkListPresenter).apply { App.instance.appComponent.inject(this)}
+        HomeworkListRvAdapter(presenter.homeworkListPresenter).apply { App.instance.appComponent.inject(
+            this
+        )}
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ) =
         View.inflate(context, R.layout.fragment_home, null)
 
     override fun init(){
-        rv_lessons.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        rv_lessons.layoutManager = LinearLayoutManager(
+            requireContext(),
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
         rv_lessons.adapter = lessonsAdapter
 
-        rv_homework.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        rv_homework.layoutManager = LinearLayoutManager(
+            requireContext(),
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
         rv_homework.adapter = homeworkListAdapter
     }
 
     override fun updateHomeworkList() {
         homeworkListAdapter.notifyDataSetChanged()
+    }
+
+    override fun openSkype() {
+        val intent: Intent? = requireActivity().packageManager?.getLaunchIntentForPackage("com.skype.raider")
+        if (intent != null) {
+            startActivity(intent)
+        } else {
+            Toast.makeText(requireContext(), "Skype not found", Toast.LENGTH_SHORT).show()
+            println("Skype not found")
+        }
     }
 
     override fun updateLessonsList() {

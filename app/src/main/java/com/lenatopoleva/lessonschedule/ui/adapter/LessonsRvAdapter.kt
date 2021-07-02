@@ -1,7 +1,9 @@
 package com.lenatopoleva.lessonschedule.ui.adapter
 
+import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
@@ -26,6 +28,7 @@ class LessonsRvAdapter (val presenter: ILessonsListPresenter) : RecyclerView.Ada
             containerView.setOnClickListener {
                 presenter.itemClickListener?.invoke(this)
             }
+            open_skype_layout.setOnClickListener { presenter.openSkypeClickListener?.invoke() }
         }
     }
 
@@ -54,6 +57,10 @@ class LessonsRvAdapter (val presenter: ILessonsListPresenter) : RecyclerView.Ada
 
         override fun loadImage(image: String) {
             imageLoader.loadInto(image, container)
+        }
+
+        override fun showOpenInSkype() {
+            open_skype_layout.visibility = VISIBLE
         }
 
     }

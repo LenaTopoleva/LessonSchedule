@@ -26,6 +26,7 @@ class HomePresenter: MvpPresenter<HomeView>() {
     }
 
     class LessonsListPresenter : ILessonsListPresenter {
+        override var openSkypeClickListener: (() -> Unit)? = null
         override var itemClickListener: ((LessonItemView) -> Unit)? = null
 
         val lessons = mutableListOf<Lesson>()
@@ -35,6 +36,7 @@ class HomePresenter: MvpPresenter<HomeView>() {
             view.setTitle(lesson.title)
             view.setTime("${lesson.timeStart} - ${lesson.timeEnd}")
             lesson.image?.let { view.loadImage(lesson.image) }
+            if (lesson.isOnline) view.showOpenInSkype()
         }
         override fun getCount() = lessons.size
     }
@@ -66,6 +68,9 @@ class HomePresenter: MvpPresenter<HomeView>() {
 
         lessonsListPresenter.itemClickListener = { view ->
             println("Lesson: ${lessonsListPresenter.lessons[view.pos].title} clicked")
+        }
+        lessonsListPresenter.openSkypeClickListener = {
+            viewState.openSkype()
         }
         homeworkListPresenter.itemClickListener = { view ->
             println("Lesson: ${homeworkListPresenter.homeworkList[view.pos].lesson} clicked")
