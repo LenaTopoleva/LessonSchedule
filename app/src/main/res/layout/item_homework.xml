@@ -6,7 +6,7 @@
     android:layout_height="170dp"
     android:layout_width="wrap_content"
     android:layout_marginEnd="10dp"
-    app:cardBackgroundColor="@color/teal_200"
+    app:cardBackgroundColor="?colorPrimary"
     app:cardCornerRadius="25dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,6 +26,7 @@
 
         <TextView
             android:id="@+id/tv_deadline"
+            android:textColor="@color/white_alfa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
