@@ -50,7 +50,9 @@ class ScheduleFragment: MvpAppCompatFragment(), ScheduleView, BackButtonListener
         rv_schedule.adapter = scheduleAdapter
     }
 
-    override fun updateScheduleList() {
+    override fun updateScheduleList(currentTimeLessonPosition: Int) {
+        rv_schedule?.layoutManager?.scrollToPosition(currentTimeLessonPosition)
+        presenter.scheduleListPresenter.currentPosition = currentTimeLessonPosition
         scheduleAdapter.notifyDataSetChanged()
     }
 

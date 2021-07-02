@@ -32,7 +32,7 @@ class ScheduleRvAdapter (val presenter: IScheduleListPresenter) : RecyclerView.A
                 view = LayoutInflater.from(parent.context).inflate(R.layout.schedule_lesson_item, parent, false)
             }
         }
-        return ViewHolder(view, timeLineViewType, viewType).apply {
+        return ViewHolder(view, timeLineViewType, presenter.currentPosition).apply {
                 containerView.setOnClickListener { presenter.itemClickListener?.invoke(this) }
                 open_skype_layout.setOnClickListener { presenter.openSkypeClickListener?.invoke() }
         }
@@ -54,7 +54,7 @@ class ScheduleRvAdapter (val presenter: IScheduleListPresenter) : RecyclerView.A
 
     override fun getItemCount() = presenter.getCount()
 
-    inner class ViewHolder(override val containerView: View, timeLineViewType: Int, viewType: Int) : RecyclerView.ViewHolder(containerView),
+    inner class ViewHolder(override val containerView: View, timeLineViewType: Int, private val currentPosition: Int) : RecyclerView.ViewHolder(containerView),
         LessonItemView,
         LayoutContainer {
 
@@ -86,6 +86,16 @@ class ScheduleRvAdapter (val presenter: IScheduleListPresenter) : RecyclerView.A
 
         override fun showDescription(optionalDescription: String) = with(containerView){
             tv_description?.text = optionalDescription
+        }
+
+        override fun updateTimeLine() {
+            val previousMarkerSize = timeline.markerSize
+            val newMarkerSize = previousMarkerSize * 2
+            val difference = newMarkerSize - previousMarkerSize
+            if (pos == currentPosition) {
+                timeline.markerSize = newMarkerSize
+                timeline.setPadding(timeline.paddingLeft - (difference ), 0, 0, 0)
+            }
         }
 
     }

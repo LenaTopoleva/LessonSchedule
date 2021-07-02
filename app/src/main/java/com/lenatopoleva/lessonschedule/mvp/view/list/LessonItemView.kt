@@ -6,4 +6,5 @@ interface LessonItemView: IItemView {
     fun loadImage(image: String)
     fun showOpenInSkype()
     fun showDescription(optionalDescription: String)
+    fun updateTimeLine()
 }

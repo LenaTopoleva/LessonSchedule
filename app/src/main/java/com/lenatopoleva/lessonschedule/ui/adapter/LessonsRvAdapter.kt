@@ -64,6 +64,7 @@ class LessonsRvAdapter (val presenter: ILessonsListPresenter) : RecyclerView.Ada
         }
 
         override fun showDescription(optionalDescription: String) {}
+        override fun updateTimeLine() {}
 
     }
 }

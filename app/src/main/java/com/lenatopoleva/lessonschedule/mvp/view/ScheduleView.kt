@@ -6,6 +6,6 @@ import moxy.viewstate.strategy.alias.AddToEndSingle
 @AddToEndSingle
 interface ScheduleView: MvpView {
     fun init()
-    fun updateScheduleList()
+    fun updateScheduleList(currentTimeLessonPosition: Int)
     fun openSkype()
 }
