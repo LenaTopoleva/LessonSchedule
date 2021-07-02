@@ -1,0 +1,176 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/countdown_card_shape">
+
+    <TextView
+        android:id="@+id/tv_are_u_ready"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:text="@string/are_you_ready_for_exams"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/cardView"
+        app:layout_constraintStart_toStartOf="@+id/cardView"
+        app:layout_constraintTop_toTopOf="@+id/cardView" />
+
+    <TextView
+        android:id="@+id/tv_days_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/countdown_shape"
+        android:text="@string/_0"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="@dimen/cardview_coundown_margin_top"
+        app:layout_constraintEnd_toStartOf="@+id/tv_days_2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_are_u_ready" />
+
+    <TextView
+        android:id="@+id/tv_days_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/countdown_shape"
+        android:text="@string/_0"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_marginTop="@dimen/cardview_coundown_margin_top"
+        app:layout_constraintEnd_toStartOf="@+id/tv_colon_1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_days_1"
+        app:layout_constraintTop_toBottomOf="@id/tv_are_u_ready" />
+
+
+    <TextView
+        android:id="@+id/tv_colon_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:text="@string/colon"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:layout_marginTop="@dimen/cardview_coundown_margin_top"
+        app:layout_constraintEnd_toStartOf="@+id/tv_hours_1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_days_2"
+        app:layout_constraintTop_toBottomOf="@id/tv_are_u_ready" />
+
+
+    <TextView
+        android:id="@+id/tv_hours_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/countdown_shape"
+        android:text="@string/_0"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_marginTop="@dimen/cardview_coundown_margin_top"
+        app:layout_constraintEnd_toStartOf="@+id/tv_hours_2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_colon_1"
+        app:layout_constraintTop_toBottomOf="@id/tv_are_u_ready" />
+
+
+    <TextView
+        android:id="@+id/tv_hours_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/countdown_shape"
+        android:text="@string/_0"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_marginTop="@dimen/cardview_coundown_margin_top"
+        app:layout_constraintEnd_toStartOf="@+id/tv_colon_2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_hours_1"
+        app:layout_constraintTop_toBottomOf="@id/tv_are_u_ready" />
+
+
+    <TextView
+        android:id="@+id/tv_colon_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="@string/colon"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:layout_marginTop="@dimen/cardview_coundown_margin_top"
+        app:layout_constraintEnd_toStartOf="@+id/tv_minutes_1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_hours_2"
+        app:layout_constraintTop_toBottomOf="@id/tv_are_u_ready" />
+
+
+    <TextView
+        android:id="@+id/tv_minutes_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="@dimen/cardview_coundown_margin_top"
+        android:background="@drawable/countdown_shape"
+        android:text="@string/_0"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_minutes_2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_colon_2"
+        app:layout_constraintTop_toBottomOf="@id/tv_are_u_ready" />
+
+
+    <TextView
+        android:id="@+id/tv_minutes_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/countdown_shape"
+        android:text="@string/_0"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="@dimen/cardview_coundown_margin_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_minutes_1"
+        app:layout_constraintTop_toBottomOf="@+id/tv_are_u_ready" />
+
+    <TextView
+        android:id="@+id/tv_days"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/days"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/tv_days_2"
+        app:layout_constraintStart_toStartOf="@+id/tv_days_1"
+        app:layout_constraintTop_toBottomOf="@+id/tv_days_1" />
+
+    <TextView
+        android:id="@+id/tv_hours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/hours"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/tv_hours_2"
+        app:layout_constraintStart_toStartOf="@+id/tv_hours_1"
+        app:layout_constraintTop_toBottomOf="@+id/tv_hours_1" />
+
+    <TextView
+        android:id="@+id/tv_minutes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/minutes"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/tv_minutes_2"
+        app:layout_constraintStart_toStartOf="@+id/tv_minutes_1"
+        app:layout_constraintTop_toBottomOf="@+id/tv_minutes_1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

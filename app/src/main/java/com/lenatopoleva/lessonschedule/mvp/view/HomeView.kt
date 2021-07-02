@@ -9,5 +9,6 @@ interface HomeView: MvpView {
     fun init()
     fun updateHomeworkList()
     fun openSkype()
+    fun updateCountDown()
 
 }

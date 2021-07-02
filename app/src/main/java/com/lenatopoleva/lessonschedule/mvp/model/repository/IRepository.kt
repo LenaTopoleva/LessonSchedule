@@ -7,4 +7,5 @@ import io.reactivex.rxjava3.core.Single
 interface IRepository {
     fun getLessons(): Single<List<Lesson>>
     fun getHomeworkList(): Single<List<Homework>>
+    fun getExamsDate(): Single<String>
 }

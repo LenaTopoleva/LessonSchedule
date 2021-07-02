@@ -14,6 +14,7 @@ import com.lenatopoleva.lessonschedule.ui.App
 import com.lenatopoleva.lessonschedule.ui.BackButtonListener
 import com.lenatopoleva.lessonschedule.ui.adapter.HomeworkListRvAdapter
 import com.lenatopoleva.lessonschedule.ui.adapter.LessonsRvAdapter
+import kotlinx.android.synthetic.main.countdown_layout.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import moxy.MvpAppCompatFragment
 import moxy.presenter.InjectPresenter
@@ -81,8 +82,28 @@ class HomeFragment: MvpAppCompatFragment(), HomeView, BackButtonListener {
         }
     }
 
+    override fun updateCountDown() {
+        if (presenter.days.length > 1) {
+            tv_days_1.text = presenter.days[0].toString()
+            tv_days_2.text = presenter.days[1].toString()
+        } else tv_days_2.text = presenter.days[0].toString()
+        if (presenter.hours.length > 1) {
+            tv_hours_1.text = presenter.hours[0].toString()
+            tv_hours_2.text = presenter.hours[1].toString()
+        } else tv_hours_2.text = presenter.hours[0].toString()
+        if (presenter.minutes.length > 1) {
+            tv_minutes_1.text = presenter.minutes[0].toString()
+            tv_minutes_2.text = presenter.minutes[1].toString()
+        } else  tv_minutes_2.text = presenter.minutes[0].toString()
+    }
+
     override fun updateLessonsList() {
         lessonsAdapter.notifyDataSetChanged()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        presenter.onStop()
     }
 
     override fun backPressed() = presenter.backClick()
