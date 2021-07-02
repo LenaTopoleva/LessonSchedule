@@ -49,6 +49,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    //TimeLineView for recyclerView
+    implementation 'com.github.vipulasri:timelineview:1.1.5'
+
     //Chip bottom navigation
     implementation 'com.github.ismaeldivita:chip-navigation-bar:1.3.4'
 

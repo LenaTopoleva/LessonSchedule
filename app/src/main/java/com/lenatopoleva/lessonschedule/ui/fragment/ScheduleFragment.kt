@@ -1,9 +1,11 @@
 package com.lenatopoleva.lessonschedule.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lenatopoleva.lessonschedule.R
 import com.lenatopoleva.lessonschedule.mvp.presenter.SchedulePresenter
@@ -50,6 +52,16 @@ class ScheduleFragment: MvpAppCompatFragment(), ScheduleView, BackButtonListener
 
     override fun updateScheduleList() {
         scheduleAdapter.notifyDataSetChanged()
+    }
+
+    override fun openSkype() {
+        val intent: Intent? = requireActivity().packageManager?.getLaunchIntentForPackage("com.skype.raider")
+        if (intent != null) {
+            startActivity(intent)
+        } else {
+            Toast.makeText(requireContext(), "Skype not found", Toast.LENGTH_SHORT).show()
+            println("Skype not found")
+        }
     }
 
     override fun backPressed() = presenter.backClick()

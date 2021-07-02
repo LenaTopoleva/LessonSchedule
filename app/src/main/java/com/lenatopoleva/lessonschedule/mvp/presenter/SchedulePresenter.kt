@@ -27,6 +27,7 @@ class SchedulePresenter: MvpPresenter<ScheduleView>() {
     }
 
     class ScheduleListPresenter : IScheduleListPresenter {
+        override var openSkypeClickListener: (() -> Unit)? = null
         override var itemClickListener: ((LessonItemView) -> Unit)? = null
 
         val lessons = mutableListOf<Lesson>()
@@ -54,6 +55,9 @@ class SchedulePresenter: MvpPresenter<ScheduleView>() {
 
         scheduleListPresenter.itemClickListener = { view ->
             println("Lesson: ${scheduleListPresenter.lessons[view.pos].title} clicked")
+        }
+        scheduleListPresenter.openSkypeClickListener = {
+            viewState.openSkype()
         }
 
     }

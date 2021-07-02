@@ -4,5 +4,6 @@ import com.lenatopoleva.lessonschedule.mvp.model.entity.Lesson
 import com.lenatopoleva.lessonschedule.mvp.view.list.LessonItemView
 
 interface IScheduleListPresenter: IListPresenter<LessonItemView> {
+    val openSkypeClickListener: (() -> Unit)?
     fun getLessonsList(): List<Lesson>
 }
