@@ -2,7 +2,7 @@ package com.lenatopoleva.lessonschedule.mvp.presenter
 
 import com.lenatopoleva.lessonschedule.mvp.model.entity.Homework
 import com.lenatopoleva.lessonschedule.mvp.model.entity.Lesson
-import com.lenatopoleva.lessonschedule.mvp.model.repository.IHomeScreenRepository
+import com.lenatopoleva.lessonschedule.mvp.model.repository.IRepository
 import com.lenatopoleva.lessonschedule.mvp.presenter.list.IHomeworkListPresenter
 import com.lenatopoleva.lessonschedule.mvp.presenter.list.ILessonsListPresenter
 import com.lenatopoleva.lessonschedule.mvp.view.HomeView
@@ -18,7 +18,7 @@ import javax.inject.Inject
 class HomePresenter: MvpPresenter<HomeView>() {
 
     @Inject lateinit var router: Router
-    @Inject lateinit var homeRepository: IHomeScreenRepository
+    @Inject lateinit var repository: IRepository
     @Inject lateinit var uiScheduler: Scheduler
 
     init {
@@ -78,7 +78,7 @@ class HomePresenter: MvpPresenter<HomeView>() {
     }
 
     fun loadLessons() {
-        disposables.add(homeRepository.getLessons()
+        disposables.add(repository.getLessons()
             .retry(3)
             .observeOn(uiScheduler)
             .subscribe(
@@ -91,7 +91,7 @@ class HomePresenter: MvpPresenter<HomeView>() {
     }
 
     fun loadHomeworkList() {
-        disposables.add(homeRepository.getHomeworkList()
+        disposables.add(repository.getHomeworkList()
             .retry(3)
             .observeOn(uiScheduler)
             .subscribe(

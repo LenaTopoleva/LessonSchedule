@@ -10,5 +10,6 @@ data class Lesson (
     val timeEnd: String,
     val image: String?,
     val isOptional: Boolean,
+    val optionalDescription: String?,
     val isOnline: Boolean
 ): Parcelable

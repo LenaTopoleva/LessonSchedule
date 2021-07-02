@@ -11,7 +11,7 @@ class Screens {
     }
 
     class ScheduleScreen() : SupportAppScreen() {
-//        override fun getFragment() = ScheduleFragment.newInstance()
+        override fun getFragment() = ScheduleFragment.newInstance()
     }
 
     class NotesScreen() : SupportAppScreen() {

@@ -27,13 +27,11 @@ class MainPresenter: MvpPresenter<MainView>() {
     }
 
     fun bottomMenuHomeClicked(): Boolean {
-        print("bottomMenuGroupsClicked")
         router.navigateTo(Screens.HomeScreen())
         return true
     }
 
     fun bottomMenuScheduleClicked(): Boolean {
-        print("bottomMenuGroupsClicked")
         router.navigateTo(Screens.ScheduleScreen())
         return true
     }
