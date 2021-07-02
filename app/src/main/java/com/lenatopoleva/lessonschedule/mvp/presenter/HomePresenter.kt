@@ -28,7 +28,7 @@ class HomePresenter: MvpPresenter<HomeView>() {
     var days: String = ""
     var hours: String = ""
     var minutes: String = ""
-    private lateinit var countDownTimer: CountDownTimer
+    private var countDownTimer: CountDownTimer? = null
 
 
     init {
@@ -152,7 +152,7 @@ class HomePresenter: MvpPresenter<HomeView>() {
             }
             override fun onFinish() {}
         }
-        countDownTimer.start()
+        countDownTimer?.start()
     }
 
     fun backClick(): Boolean {
@@ -163,10 +163,10 @@ class HomePresenter: MvpPresenter<HomeView>() {
     override fun onDestroy() {
         super.onDestroy()
         disposables.dispose()
-        countDownTimer.cancel()
+        countDownTimer?.cancel()
     }
 
     fun onStop() {
-        countDownTimer.cancel()
+        countDownTimer?.cancel()
     }
 }
