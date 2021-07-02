@@ -5,7 +5,7 @@ import moxy.viewstate.strategy.alias.AddToEndSingle
 
 @AddToEndSingle
 interface HomeView: MvpView {
-    fun updateLessonsList()
+    fun updateLessonsList(currentPosition: Int)
     fun init()
     fun updateHomeworkList()
     fun openSkype()

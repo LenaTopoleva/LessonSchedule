@@ -97,7 +97,8 @@ class HomeFragment: MvpAppCompatFragment(), HomeView, BackButtonListener {
         } else  tv_minutes_2.text = presenter.minutes[0].toString()
     }
 
-    override fun updateLessonsList() {
+    override fun updateLessonsList(currentPosition: Int) {
+        rv_lessons?.layoutManager?.scrollToPosition(currentPosition)
         lessonsAdapter.notifyDataSetChanged()
     }
 

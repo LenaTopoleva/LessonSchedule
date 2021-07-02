@@ -96,7 +96,7 @@ class HomePresenter: MvpPresenter<HomeView>() {
                 {
                     lessonsListPresenter.lessons.clear()
                     lessonsListPresenter.lessons.addAll(it)
-                    viewState.updateLessonsList()
+                    viewState.updateLessonsList(findCurrentTimeLessonPosition(it))
                 },
                 { println("onError: ${it.message}") }))
     }
@@ -125,6 +125,22 @@ class HomePresenter: MvpPresenter<HomeView>() {
                 },
                 {println("onError: ${it.message}") }
             ))
+    }
+
+    private fun findCurrentTimeLessonPosition(list: List<Lesson>): Int {
+        val currentTime = Calendar.getInstance().time.hours
+        println("Time NOW: $currentTime")
+        val pos: Int = 0
+        for(i in list.indices) {
+            var previousLessonEndTimeHour: Int = 0
+            val lessonStartTimeHour = list[i].timeStart.subSequence(0, 2).toString().toInt()
+            if (i > 0) previousLessonEndTimeHour = list[i-1].timeEnd.subSequence(0, 2).toString().toInt()
+            if (lessonStartTimeHour == currentTime) {
+                return i
+            } else if (lessonStartTimeHour > currentTime && i > 0 && previousLessonEndTimeHour < currentTime) return i
+            else if (lessonStartTimeHour > currentTime && i > 0 && previousLessonEndTimeHour >= currentTime) return i - 1
+        }
+        return pos
     }
 
     private fun getCountDownTime(){
