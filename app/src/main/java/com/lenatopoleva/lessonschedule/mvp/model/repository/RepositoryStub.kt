@@ -27,7 +27,7 @@ class RepositoryStub: IRepository {
     override fun getHomeworkList(): Single<List<Homework>> =
         Single.just(homeworkList).subscribeOn(Schedulers.io())
 
-    override fun getExamsDate(): Single<String> = Single.just("11 Jul 2021 00:00:00 GMT")
+    override fun getExamsDate(): Single<String> = Single.just("01 Jan 2022 00:00:00 GMT")
         .subscribeOn(Schedulers.io())
 
 
